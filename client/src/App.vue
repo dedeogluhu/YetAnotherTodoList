@@ -2,7 +2,7 @@
   <div id="app">
     <h1 class="subtitle has-text-centered">TODO List:</h1>
     <hr />
-    <div class="field is-expanded">
+    <div class="field has-addons">
       <div class="control is-expanded">
         <input
           type="text"
@@ -13,13 +13,17 @@
         />
       </div>
       <div class="control">
-        <a class="button is-info" @click="addItem" :disabled="!description">
+        <a
+          class="button is-info px-6"
+          @click="addItem"
+          :disabled="!description"
+        >
           Add
         </a>
       </div>
     </div>
     <div class="notification" v-for="(item, i) in items" :key="item._id">
-      <div class="colums">
+      <div class="columns">
         <input
           type="text"
           v-if="isSelected(item)"
@@ -27,7 +31,7 @@
           class="column input"
         />
         <p v-else class="column">
-          <span class="tag is-primary">
+          <span class="tag is-link mr-4">
             {{ i + 1 }}
           </span>
           {{ item.description }}
@@ -112,7 +116,7 @@ export default {
 #app {
   margin: auto;
   margin-top: 3rem;
-  max-width: 700px;
+  max-width: 800px;
 }
 .icon {
   cursor: pointer;
