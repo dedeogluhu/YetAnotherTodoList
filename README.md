@@ -36,4 +36,4 @@ yarn start
 
 ### Important
 
-You need to set up MONGO_URI and PORT as environment variables to work
+You need to set up MONGO_URI and PORT as environment variables to work with this
