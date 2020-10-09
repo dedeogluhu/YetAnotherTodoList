@@ -75,19 +75,19 @@ export default {
     };
   },
   async mounted() {
-    const response = await axios.get("api/bucketListItems/");
+    const response = await axios.get("api/todoListItems/");
     this.items = response.data;
   },
   methods: {
     async addItem() {
-      const response = await axios.post("api/bucketListItems/", {
+      const response = await axios.post("api/todoListItems/", {
         description: this.description,
       });
       this.items.push(response.data);
       this.description = "";
     },
     async removeItem(item, i) {
-      await axios.delete("api/bucketListItems/" + item._id);
+      await axios.delete("api/todoListItems/" + item._id);
       this.items.splice(i, 1);
     },
     select(item) {
@@ -102,7 +102,7 @@ export default {
       this.editedDescription = "";
     },
     async updateItem(item, i) {
-      const response = await axios.put("api/bucketListItems" + item._id, {
+      const response = await axios.put("api/todoListItems/" + item._id, {
         description: this.editedDescription,
       });
       this.items[i] = response.data;

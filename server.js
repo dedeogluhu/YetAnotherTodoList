@@ -4,7 +4,7 @@ const { PORT, mongoUri } = require('./config');
 const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const bucketListItemRoutes = require('./routes/api/bucketListItems');
+const todoListItemRoutes = require('./routes/api/todoListItems');
 const path = require('path');
 
 const app = express();
@@ -22,7 +22,7 @@ mongoose.connect(mongoUri, {
     .catch((error) => console.log(error))
 
 
-app.use('/api/bucketListItems', bucketListItemRoutes);
+app.use('/api/todoListItems', todoListItemRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/dist'));

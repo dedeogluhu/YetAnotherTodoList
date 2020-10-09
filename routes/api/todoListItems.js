@@ -1,13 +1,13 @@
 const { Router } = require('express');
-const BucketListItem = require('../../models/BucketListItem');
+const TodoListItem = require('../../models/TodoListItem');
 
 const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        const bucketListItems = await BucketListItem.find();
-        if (!bucketListItems) throw new Error('No bucketListItems');
-        const sorted = bucketListItems.sort((a, b) => {
+        const todoListItems = await TodoListItem.find();
+        if (!todoListItems) throw new Error('No todoListItems');
+        const sorted = todoListItems.sort((a, b) => {
             return new Date(a.date).getTime() - new Date(b.date).getTime();
         });
         res.status(200).json(sorted);
@@ -17,11 +17,11 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const newBucekListItem = new BucketListItem(req.body);
+    const newTodoListItem = new TodoListItem(req.body);
     try {
-        const bucketListItem = await newBucekListItem.save();
-        if (!bucketListItem) throw new Error('Something went wrong saving the bucketListItem!');
-        res.status(200).json(bucketListItem);
+        const todoListItem = await newTodoListItem.save();
+        if (!todoListItem) throw new Error('Something went wrong saving the todoListItem!');
+        res.status(200).json(todoListItem);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const response = await BucketListItem.findByIdAndUpdate(id, req.body);
+        const response = await TodoListItem.findByIdAndUpdate(id, req.body);
         if (!response) throw Error('Something went wrong while updating...');
         const updated = { ...response._doc, ...req.body }
         res.status(200).json(updated);
@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const removed = await BucketListItem.findByIdAndDelete(id);
+        const removed = await TodoListItem.findByIdAndDelete(id);
         if (!removed) throw Error('Something went wrong while deleting...');
         res.status(200).json(removed);
     } catch (error) {

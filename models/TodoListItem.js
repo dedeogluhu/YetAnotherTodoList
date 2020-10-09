@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const BucketListItemSchema = new Schema({
+const TodoListItemSchema = new Schema({
     description: {
         type: String,
         required: true
@@ -11,6 +11,6 @@ const BucketListItemSchema = new Schema({
     }
 })
 
-const BucketListItem = model('bucketListItem', BucketListItemSchema);
+const TodoListItem = model('todoListItem', TodoListItemSchema);
 
-module.exports = BucketListItem;
+module.exports = TodoListItem;
