@@ -1,4 +1,4 @@
-# Yet Another TODO App
+# Yet Another TODOLİST App
 
 This was a tutorial i was interested in and followed
 
